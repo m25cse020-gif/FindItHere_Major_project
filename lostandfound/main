@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Lost & Found</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+/* ... existing code ... -->
+        .modal-content {
+            transition: transform 0.25s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Header Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-indigo-600">Campus Lost & Found</span>
+                </div>
+                <div class="hidden sm:block sm:ml-6">
+                    <div class="flex space-x-4">
+                        <a href="#browse" class="text-gray-700 hover:bg-indigo-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Browse Items</a>
+                        <a href="#report" class="bg-indigo-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">Report an Item</a>
+                    </div>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                        <span class="sr-only">Open main menu</span>
+                        <!-- Icon when menu is closed. -->
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                        <!-- Icon when menu is open. -->
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#browse" class="text-gray-700 hover:bg-indigo-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Browse Items</a>
+                <a href="#report" class="bg-indigo-600 text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-700">Report an Item</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Report Item Form -->
+        <section id="report" class="bg-white p-6 sm:p-8 rounded-lg shadow-lg mb-8">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Report a Lost or Found Item</h2>
+            <form id="report-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Item Details -->
+                <div class="col-span-1">
+                    <label for="item-name" class="block text-sm font-medium text-gray-700">Item Name</label>
+                    <input type="text" name="item-name" id="item-name" placeholder="e.g., Black Wallet, Blue Water Bottle" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <div class="col-span-1">
+                    <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                    <input type="text" name="location" id="location" placeholder="e.g., Library 2nd Floor, Cafeteria" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <div class="col-span-1 md:col-span-2">
+                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="description" name="description" rows="3" placeholder="Add details like brand, color, or any identifying features" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                </div>
+
+                <div class="col-span-1">
+                    <label for="date" class="block text-sm font-medium text-gray-700">Date Lost/Found</label>
+                    <input type="date" name="date" id="date" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <!-- Status: Lost or Found -->
+                <div class="col-span-1">
+                    <label class="block text-sm font-medium text-gray-700">Status</label>
+                    <div class="mt-2 flex space-x-4">
+                        <div class="flex items-center">
+                            <input id="status-lost" name="status" type="radio" value="lost" checked class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                            <label for="status-lost" class="ml-2 block text-sm text-gray-900">I Lost This</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="status-found" name="status" type="radio" value="found" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                            <label for="status-found" class="ml-2 block text-sm text-gray-900">I Found This</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-span-1">
+                    <label for="contact-name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                    <input type="text" name="contact-name" id="contact-name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <div class="col-span-1">
+                    <label for="contact-info" class="block text-sm font-medium text-gray-700">Your Contact (Email or Phone)</label>
+                    <input type="text" name="contact-info" id="contact-info" placeholder="Your email or phone number" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                
+                <!-- Form Submission Feedback -->
+                <div id="form-message" class="col-span-1 md:col-span-2 text-sm"></div>
+
+                <!-- Submit Button -->
+                <div class="col-span-1 md:col-span-2 flex justify-end">
+                    <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-lg text-base font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all">
+                        Submit Report
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Browse Items Section -->
+        <section id="browse" class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Browse Items</h2>
+
+            <!-- Filters -->
+            <div class="mb-4 border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                    <button id="tab-all" class="tab-button border-indigo-500 text-indigo-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">All Items</button>
+                    <button id="tab-lost" class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Lost</button>
+                    <button id="tab-found" class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Found</button>
+                </nav>
+            </div>
+            
+            <!-- Item Loading Spinner -->
+            <div id="loading-spinner" class="text-center py-8 hidden">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+                <p class="mt-2 text-gray-600">Loading items...</p>
+            </div>
+
+            <!-- Item List -->
+            <div id="item-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Example Item Card (Lost) -->
+                <div class="item-card bg-gray-50 border border-gray-200 rounded-lg p-5 shadow-sm" data-status="lost">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold text-gray-800">Black Wallet</h3>
+                        <span class="text-sm font-medium bg-red-100 text-red-800 px-3 py-1 rounded-full">Lost</span>
+                    </div>
+                    <p class="text-gray-600 mb-2"><strong class="font-medium text-gray-700">Location:</strong> Library 2nd Floor</p>
+                    <p class="text-gray-600 mb-4"><strong class="font-medium text-gray-700">Date:</strong> 2025-10-27</p>
+                    <p class="text-gray-700 text-sm mb-4">"Lost a black leather wallet, has a driver's license inside."</p>
+                    <button class="claim-button w-full text-center px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            data-contact="student-who-lost@example.com"
+                            data-item="Black Wallet">
+                        I found this!
+                    </button>
+                </div>
+
+                <!-- Example Item Card (Found) -->
+                <div class="item-card bg-gray-50 border border-gray-200 rounded-lg p-5 shadow-sm" data-status="found">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xl font-semibold text-gray-800">Blue Water Bottle</h3>
+                        <span class="text-sm font-medium bg-green-100 text-green-800 px-3 py-1 rounded-full">Found</span>
+                    </div>
+                    <p class="text-gray-600 mb-2"><strong class="font-medium text-gray-700">Location:</strong> Cafeteria</p>
+                    <p class="text-gray-600 mb-4"><strong class="font-medium text-gray-700">Date:</strong> 2025-10-26</p>
+                    <p class="text-gray-700 text-sm mb-4">"Found a blue HydroFlask bottle, left on a table."</p>
+                    <button class="claim-button w-full text-center px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            data-contact="student-who-found@example.com"
+                            data-item="Blue Water Bottle">
+                        Claim Item
+                    </button>
+                </div>
+                <!-- More items will be loaded here from your API -->
+            </div>
+            <p id="no-items-message" class="text-gray-500 text-center py-8 hidden">No items found.</p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12 border-t border-gray-200">
+        <div class="max-w-6xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2025 Campus Lost & Found. SDE Major Project.
+        </div>
+    </footer>
+
+    <!-- Claim/Contact Modal -->
+    <div id="modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 opacity-0 pointer-events-none">
+        <div class="modal-content bg-white rounded-lg shadow-xl p-6 w-full max-w-md transform -translate-y-10 scale-95">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-2xl font-bold text-gray-800">Contact Information</h3>
+                <button id="modal-close-button" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <p class="mb-4 text-gray-700">To claim or report the item '<strong id="modal-item-name"></strong>', please contact the person who posted:</p>
+            <div class="bg-gray-100 p-3 rounded-md text-center">
+                <p id="modal-contact-info" class="text-lg font-medium text-indigo-700"></p>
+            </div>
+            <p class="text-xs text-gray-500 mt-4">Please arrange a safe meeting place on campus. Do not share personal information unnecessarily.</p>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcons = mobileMenuButton.querySelectorAll('svg');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcons[0].classList.toggle('hidden');
+                menuIcons[0].classList.toggle('block');
+                menuIcons[1].classList.toggle('hidden');
+                menuIcons[1].classList.toggle('block');
+            });
+
+            // --- Tab Filtering Logic ---
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const itemList = document.getElementById('item-list');
+            const allItems = itemList.querySelectorAll('.item-card');
+            const noItemsMessage = document.getElementById('no-items-message');
+
+            function filterItems(status) {
+                let itemsFound = false;
+                // Update tab styles
+                tabButtons.forEach(button => {
+                    button.classList.remove('border-indigo-500', 'text-indigo-600');
+                    button.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+                });
+                document.getElementById(`tab-${status}`).classList.add('border-indigo-500', 'text-indigo-600');
+                document.getElementById(`tab-${status}`).classList.remove('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+
+                // Filter items
+                allItems.forEach(card => {
+                    if (status === 'all' || card.dataset.status === status) {
+                        card.style.display = 'block';
+                        itemsFound = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show 'no items' message if needed
+                noItemsMessage.style.display = itemsFound ? 'none' : 'block';
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const status = button.id.replace('tab-', '');
+                    filterItems(status);
+                });
+            });
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('modal');
+            const modalContent = modal.querySelector('.modal-content');
+            const modalCloseButton = document.getElementById('modal-close-button');
+            const modalItemName = document.getElementById('modal-item-name');
+            const modalContactInfo = document.getElementById('modal-contact-info');
+
+            function openModal(itemName, contactInfo) {
+                modalItemName.textContent = itemName;
+                modalContactInfo.textContent = contactInfo;
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('-translate-y-10', 'scale-95');
+            }
+
+            function closeModal() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.add('-translate-y-10', 'scale-95');
+            }
+
+            // Add click listener to all claim buttons (even future ones)
+            itemList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('claim-button')) {
+                    const itemName = e.target.dataset.item;
+                    const contactInfo = e.target.dataset.contact;
+                    openModal(itemName, contactInfo);
+                }
+            });
+
+            modalCloseButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // --- Form Submission Logic ---
+            const reportForm = document.getElementById('report-form');
+            const formMessage = document.getElementById('form-message');
+
+            reportForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Stop default form submission
+                
+                const formData = new FormData(reportForm);
+                const data = {
+                    name: formData.get('item-name'),
+                    location: formData.get('location'),
+                    description: formData.get('description'),
+                    date: formData.get('date'),
+                    status: formData.get('status'),
+                    contactName: formData.get('contact-name'),
+                    contactInfo: formData.get('contact-info'),
+                };
+
+                // Show loading/success message
+                formMessage.textContent = 'Submitting report...';
+                formMessage.className = 'col-span-1 md:col-span-2 text-sm text-blue-600';
+
+                //
+                // --- BACKEND INTEGRATION POINT ---
+                //
+                // Yahan aap apne Node.js API ko call karenge.
+                // Abhi ke liye, hum 1 second ka delay simulate karenge.
+                
+                console.log('Form Data to send to backend:', data);
+
+                try {
+                    // --- EXAMPLE: Replace this with your actual API call ---
+                    // const response = await fetch('YOUR_NODEJS_API_ENDPOINT_URL/api/items', {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'Content-Type': 'application/json',
+                    //     },
+                    //     body: JSON.stringify(data),
+                    // });
+
+                    // if (!response.ok) {
+                    //     throw new Error('Network response was not ok');
+                    // }
+
+                    // const result = await response.json();
+                    // console.log('Success:', result);
+                    // --- End of example API call ---
+
+
+                    // --- Simulation ---
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    // --- End of Simulation ---
+                    
+                    formMessage.textContent = 'Report submitted successfully! Your item will appear in the list soon.';
+                    formMessage.className = 'col-span-1 md:col-span-2 text-sm text-green-600 font-medium';
+                    reportForm.reset();
+
+                    // TODO: In a real app, you would call `fetchItems()` here to refresh the list.
+
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+                    formMessage.textContent = 'Error submitting report. Please try again later.';
+                    formMessage.className = 'col-span-1 md:col-span-2 text-sm text-red-600 font-medium';
+                }
+            });
+
+
+            // --- Fetch Items from API (On Page Load) ---
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            async function fetchItems() {
+                // This function will get all items from your Node.js backend
+                loadingSpinner.style.display = 'block';
+                itemList.style.display = 'none'; // Hide example items
+                noItemsMessage.style.display = 'none';
+
+                console.log("Fetching items from backend...");
+
+                try {
+                    // --- EXAMPLE: Replace this with your actual API call ---
+                    // const response = await fetch('YOUR_NODEJS_API_ENDPOINT_URL/api/items');
+                    // if (!response.ok) throw new Error('Failed to fetch');
+                    // const items = await response.json();
+                    // --- End of example API call ---
+
+                    // --- Simulation ---
+                    // Using the example items as if they came from an API
+                    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
+                    const items = [
+                        { _id: '1', name: 'Black Wallet', location: 'Library 2nd Floor', date: '2025-10-27', description: "Lost a black leather wallet, has a driver's license inside.", status: 'lost', contactInfo: 'student1@example.com' },
+                        { _id: '2', name: 'Blue Water Bottle', location: 'Cafeteria', date: '2025-10-26', description: "Found a blue HydroFlask bottle, left on a table.", status: 'found', contactInfo: 'student2@example.com' },
+                        { _id: '3', name: 'Airpods Case', location: 'Gym', date: '2025-10-25', description: "Found an empty white Airpods Pro case.", status: 'found', contactInfo: 'admin@example.com' }
+                    ];
+                    // --- End of Simulation ---
+
+                    loadingSpinner.style.display = 'none';
+                    
+                    if (items.length === 0) {
+                        noItemsMessage.style.display = 'block';
+                        return;
+                    }
+
+                    itemList.style.display = 'grid';
+                    itemList.innerHTML = ''; // Clear example items
+
+                    items.forEach(item => {
+                        const isLost = item.status === 'lost';
+                        const card = `
+                            <div class="item-card bg-gray-50 border border-gray-200 rounded-lg p-5 shadow-sm" data-status="${item.status}">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="text-xl font-semibold text-gray-800">${item.name}</h3>
+                                    <span class="text-sm font-medium ${isLost ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'} px-3 py-1 rounded-full capitalize">${item.status}</span>
+                                </div>
+                                <p class="text-gray-600 mb-2"><strong class="font-medium text-gray-700">Location:</strong> ${item.location}</p>
+                                <p class="text-gray-600 mb-4"><strong class="font-medium text-gray-700">Date:</strong> ${item.date}</p>
+                                <p class="text-gray-700 text-sm mb-4">"${item.description}"</p>
+                                <button class="claim-button w-full text-center px-4 py-2 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        data-contact="${item.contactInfo}"
+                                        data-item="${item.name}">
+                                    ${isLost ? 'I found this!' : 'Claim Item'}
+                                </button>
+                            </div>
+                        `;
+                        itemList.innerHTML += card;
+                    });
+                    
+                    // Re-apply the filter after loading
+                    const currentTab = document.querySelector('.tab-button.border-indigo-500').id.replace('tab-', '');
+                    filterItems(currentTab);
+
+
+                } catch (error) {
+                    console.error("Failed to fetch items:", error);
+                    loadingSpinner.style.display = 'none';
+                    itemList.innerHTML = `<p class="text-red-600 text-center col-span-full">Failed to load items. Please refresh the page.</p>`;
+                }
+            }
+
+            // Load items when the page starts
+            // We comment this out so you can see the examples, uncomment it when your API is ready.
+            // fetchItems();
+
+            // For now, just apply the filter to the example items
+            filterItems('all');
+
+
+        }); // End of DOMContentLoaded
+    </script>
+
+</body>
+</html>
+
