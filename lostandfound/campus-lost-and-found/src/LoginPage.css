@@ -1,0 +1,181 @@
+/* Yeh poore page ko center karega */
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110vh; /* Screen ki poori height le lo */
+  background-color: #ffffff; /* Halka grey background */
+}
+
+/* Asli Login Box ki styling */
+.login-box {
+  background-color: white;
+  padding: 2rem; /* Box ke andar jagah */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Halka sa 3D effect */
+  width: 800px;
+  text-align: center;
+}
+
+/* Back to Home Link */
+.back-link {
+  display: block; /* Yeh poori line lega */
+  text-align: left; /* Text ko left mein rakhega */
+  margin-bottom: 1rem; /* Title se thodi doori */
+  color: #003366; /* IITJ wala blue color */
+  text-decoration: none; /* Neeche ki line (underline) hataye */
+  font-weight: bold;
+  font-size: 0.9rem; /* Thoda chhota */
+}
+
+.back-link:hover {
+  text-decoration: underline; /* Mouse laane par underline dikhe */
+}
+
+.login-box h2 {
+  margin-bottom: 1.5rem;
+  color: #003366; /* IITJ wala blue color */
+}
+
+/* Form ke input fields */
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left; /* Label left se shuru honge */
+}
+
+.input-group label {
+  display: block; /* Label ko alag line mein dikhaye */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* Yeh padding ko width ke andar rakhega */
+}
+
+/* Login Button */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #003366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0055a4; /* Thoda halka blue */
+}
+
+/* New User Signup Link */
+.signup-link {
+  margin-top: 1.5rem;
+}
+
+.signup-link a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Admin / Security Links */
+.other-logins {
+  margin-top: 1rem;
+  font-size: 0.85rem; /* Chhota text */
+}
+
+.other-logins a {
+  color: #555;
+  text-decoration: none;
+  margin: 0 5px; /* Beech mein thodi jagah */
+}
+
+.other-logins a:hover {
+  text-decoration: underline;
+}
+
+/* Signup page ke verification box ke liye */
+.verification-group {
+  margin-top: 1.5rem; /* Upar se thodi zyada jagah */
+  padding: 10px;
+  background-color: #f9f9f9; /* Halka sa alag background */
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.verification-group label {
+  font-size: 0.9rem; /* Thoda chhota text */
+}
+
+.verification-group strong {
+  color: #d9534f; /* Laal rang */
+}
+
+/* --- OTP Form Styling --- */
+.otp-form-container {
+  text-align: center;
+}
+
+.otp-form-container h4 {
+  color: #003366;
+  margin-top: 0;
+}
+
+.otp-form-container p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.otp-options {
+  display: flex;
+  justify-content: space-between; /* Dono ko kone mein rakhega */
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.resend-link {
+  font-size: 0.9rem;
+  color: #003366;
+  text-decoration: none;
+}
+
+.resend-link:hover {
+  text-decoration: underline;
+}
+
+/* Back button jo bilkul link jaisa dikhega */
+.back-button {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.back-button:hover {
+  color: #000;
+}
+/* --- Validation Error Message --- */
+.error-message {
+  color: #d9534f; /* Red color */
+  font-size: 0.85rem;
+  text-align: left;
+  margin-top: 5px; /* Input se thodi doori */
+  margin-bottom: 0;
+}
+
+/* --- Success Message Styling --- */
+.success-message {
+  color: #28a745; /* Green color */
+  font-size: 0.9rem;
+  font-weight: bold;
+}

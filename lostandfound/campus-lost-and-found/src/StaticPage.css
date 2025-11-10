@@ -1,0 +1,51 @@
+/* In simple pages (Contact, Help) ko style karne ke liye */
+.static-page-container {
+  background-color: #f4f4f4;
+  min-height: 100vh; /* Screen ki poori height le lo */
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.static-content-box {
+  max-width: 800px; /* Thoda chaurha (wider) */
+  margin: 0 auto; /* Beech mein */
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.static-content-box h2 {
+  color: #003366;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.static-content-box h3 {
+  color: #333;
+}
+
+.static-content-box p {
+  line-height: 1.6; /* Padhne mein aasan */
+  color: #555;
+}
+
+.static-content-box a {
+  color: #003366;
+}
+
+/* --- Login page se copy kiya gaya --- */
+/* Back to Home Link */
+.back-link {
+  display: block;
+  text-align: left;
+  margin-bottom: 1rem;
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
