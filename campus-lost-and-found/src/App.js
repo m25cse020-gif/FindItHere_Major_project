@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// 1. Dhyan dein 'jwtDecode' mein {} nahi hai
+
 import{ jwtDecode }from 'jwt-decode'; 
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 
-// -- Humare saare pages --
+
 import HomePage from './HomePage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
@@ -66,7 +66,7 @@ function AppContent() {
   </div>
 </header>
 
-      {/* --- NAVIGATION BAR --- */}
+      {}
       <nav className="navbar">
         <div className="nav-left">
           <Link to="/">Home</Link>
@@ -77,9 +77,9 @@ function AppContent() {
         
         <div className="nav-right">
           {isLoggedIn ? (
-            // Agar user Logged In hai:
+
             <>
-              {/* --- NEW "MY REPORTS" LINK --- */}
+              {}
               <Link to="/my-reports" className="my-reports-link">My Reports</Link>
 
               {userRole === 'admin' && (
@@ -96,8 +96,8 @@ function AppContent() {
         </div>
       </nav>
 
-      {/* --- 2. YAHAN AAPKI GALTI THI --- */}
-      {/* Check karein ki yeh saare routes maujood hain */}
+      {}
+      {}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -105,7 +105,7 @@ function AppContent() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/help" element={<HelpPage />} />
         
-        {/* --- YEH ROUTES AAPKE MISSING THE --- */}
+        {}
         <Route path="/report-item" element={<ReportItemPage />} />
         <Route path="/view-items" element={<ItemsListPage />} />
         <Route path="/admin" element={<AdminPanel />} />

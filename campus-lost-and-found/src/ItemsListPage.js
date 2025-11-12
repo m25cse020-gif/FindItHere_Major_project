@@ -38,7 +38,7 @@ function ItemsListPage() {
         }
 
         const config = { headers: { 'x-auth-token': token } };
-        const response = await axios.get('http://localhost:5002/api/items/all', config);
+        const response = await axios.get('/api/items/all', config);
         setItems(response.data);
         setLoading(false);
       } catch (err) {
@@ -50,7 +50,7 @@ function ItemsListPage() {
     fetchItems();
   }, [navigate]);
 
-  // Filter logic
+
   const filteredItems = items.filter(item => {
     const matchesSearch = 
       item.itemName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -62,7 +62,7 @@ function ItemsListPage() {
     return matchesSearch && matchesType && matchesCategory;
   });
 
-  // Alert #1: Jab user 'FOUND' item ko 'CLAIM' karta hai
+
   const handleClaim = (item) => {
     alert(
       `--- How to Claim This Item ---\n\n` +
@@ -72,7 +72,7 @@ function ItemsListPage() {
     );
   };
 
-  // Alert #2: Jab user 'LOST' item ko 'FOUND' karta hai
+
   const handleFoundIt = (item) => {
     alert(
       `--- You Found a Lost Item! ---\n\n` +
@@ -82,7 +82,7 @@ function ItemsListPage() {
     );
   };
 
-  // Admin ke 'Claimed' mark karne ka function
+
   const handleAdminMarkClaimed = async (itemId) => {
     if (!window.confirm('Are you sure you want to mark this item as "Claimed"? It will be removed from this list.')) {
       return;
@@ -91,7 +91,7 @@ function ItemsListPage() {
       const token = localStorage.getItem('token');
       const config = { headers: { 'x-auth-token': token } };
       const response = await axios.put(
-        `http://localhost:5002/api/admin/claim-item/${itemId}`,
+        `/api/admin/claim-item/${itemId}`,
         {},
         config
       );
@@ -108,7 +108,7 @@ function ItemsListPage() {
         <h2>All Approved Items</h2>
         <p>This is the list of all lost and found items that have been approved by an admin.</p>
         
-        {/* Filter bar */}
+        {}
         <div className="filter-bar">
           <input
             type="text"
@@ -149,7 +149,7 @@ function ItemsListPage() {
           {filteredItems.map(item => (
             <div className={`item-card item-card-${item.itemType}`} key={item._id}>
               
-              {/* Image Logic */}
+              {}
               {item.image ? (
                  <img 
                   src={item.image} 
@@ -168,16 +168,16 @@ function ItemsListPage() {
                   {item.itemType}
                 </span>
 
-                {/* Item Details */}
+                {}
                 <h3>{item.itemName}</h3>
                 <p><strong>Location:</strong> {item.location}</p>
                 <p><strong>Category:</strong> {item.category}</p>
                 <p>{item.description}</p>
                 
-               {/* --- YEH POORA NAYA BUTTONS BLOCK HAI --- */}
+               {}
 <div className="item-card-buttons">
 
-  {/* 1. Normal User Button (Claim/Found) */}
+  {}
   {item.itemType === 'found' ? (
     <button 
       className="claim-button" 
@@ -195,7 +195,7 @@ function ItemsListPage() {
     </button>
   )}
 
-  {/* 2. Admin-Only "Remove" Button */}
+  {}
   {userRole === 'admin' && (
     <button 
       className="claim-button remove-button"
@@ -205,12 +205,12 @@ function ItemsListPage() {
     </button>
   )}
 </div>
-{/* --- NAYA BLOCK KHATAM --- */}
+{}
               </div>
             </div>
           ))}
           
-          {/* Empty message logic */}
+          {}
           {!loading && filteredItems.length === 0 && (
             <p style={{ textAlign: 'center' }}>
               {items.length === 0 

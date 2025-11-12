@@ -84,14 +84,14 @@ Create a .env file in the backend folder. This is the most important step. Paste
 
 Code snippet
 
-# MongoDB Atlas Connection String
+
 mongoURI=mongodb+srv://<your-username>:<your-password>@cluster...
 
-# Nodemailer (Gmail) Credentials
+
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-16-digit-app-password
 
-# JWT Secret (Make this a long, random string)
+
 JWT_SECRET=MY_PROJECT_IS_SECRET_12345
 Update index.js and middleware/auth.js:
 

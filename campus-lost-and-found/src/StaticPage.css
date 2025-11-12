@@ -1,14 +1,14 @@
-/* In simple pages (Contact, Help) ko style karne ke liye */
+
 .static-page-container {
   background-color: #f4f4f4;
-  min-height: 100vh; /* Screen ki poori height le lo */
+  min-height: 100vh; 
   padding: 2rem;
   box-sizing: border-box;
 }
 
 .static-content-box {
-  max-width: 800px; /* Thoda chaurha (wider) */
-  margin: 0 auto; /* Beech mein */
+  max-width: 800px; 
+  margin: 0 auto; 
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
@@ -26,7 +26,7 @@
 }
 
 .static-content-box p {
-  line-height: 1.6; /* Padhne mein aasan */
+  line-height: 1.6; 
   color: #555;
 }
 
@@ -34,8 +34,8 @@
   color: #003366;
 }
 
-/* --- Login page se copy kiya gaya --- */
-/* Back to Home Link */
+
+
 .back-link {
   display: block;
   text-align: left;

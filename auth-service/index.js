@@ -1,4 +1,4 @@
-// --- AUTH-SERVICE/INDEX.JS (FINAL CLEANED CODE) ---
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -15,15 +15,15 @@ app.use(express.json());
 const port = 5001; 
 const JWT_SECRET = 'my-jwt-secret-key-12345'; // Humara secret (ise .env mein daal sakte hain)
 
-// Database Connection
-mongoose.connect(process.env.mongoURI, { /* options */ })
+
+mongoose.connect(process.env.mongoURI, {  })
   .then(() => console.log('Auth-Service: MongoDB Connected!'))
   .catch(err => console.error(err));
 
-// --- API ROUTES ---
 
-// @route   POST /api/auth/request-otp
-// @desc    Register user (unverified), generate OTP, and send email
+
+
+
 app.post('/api/auth/request-otp', async (req, res) => {
   const { name, email, mobile, password } = req.body;
 
@@ -36,7 +36,7 @@ app.post('/api/auth/request-otp', async (req, res) => {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
+    console.log(`--- DEBUG: OTP for ${email} is: ${otp} ---`);
     if (user) {
       user.name = name;
       user.mobile = mobile;
@@ -90,8 +90,8 @@ app.post('/api/auth/request-otp', async (req, res) => {
 });
 
 
-// @route   POST /api/auth/verify-otp
-// @desc    Verify user's OTP and activate account
+
+
 app.post('/api/auth/verify-otp', async (req, res) => {
   const { email, otp } = req.body;
 
@@ -135,9 +135,9 @@ app.post('/api/auth/verify-otp', async (req, res) => {
 });
 
 
-// @route   POST /api/auth/login
-// @desc    Authenticate user & get token (Login)
-// @access  Public
+
+
+
 app.post('/api/auth/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -178,15 +178,15 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 
-// @route   GET /api/auth/verify-token
-// @desc    Verify token for other microservices
+
+
 app.get('/api/auth/verify-token', async (req, res) => {
   try {
     const token = req.header('x-auth-token');
     if (!token) {
       return res.status(401).json({ msg: 'No token, authorization denied' });
     }
-    // Token ko WAHI secret se verify karein
+
     const decoded = jwt.verify(token, JWT_SECRET); 
     res.json(decoded.user); 
   } catch (err) {
@@ -195,7 +195,7 @@ app.get('/api/auth/verify-token', async (req, res) => {
 });
 
 
-// --- Server Start ---
+
 app.listen(port, () => {
   console.log(`Auth-Service (Microservice 1) running on http://localhost:${port}`);
 });

@@ -7,7 +7,7 @@ function SignupPage() {
   
   const navigate = useNavigate(); 
 
-  // --- States for the form data (to remember them) ---
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
@@ -15,23 +15,23 @@ function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [verification, setVerification] = useState('');
   
-  // --- State for the OTP input ---
+
   const [otp, setOtp] = useState('');
 
-  // --- State for the two-step process ---
+
   const [isOtpSent, setIsOtpSent] = useState(false);
   
-  // --- State for all error messages ---
+
   const [error, setError] = useState('');
-  // --- State for success messages (like "OTP sent!") ---
+
   const [success, setSuccess] =
     useState('');
 
-  // --- This function runs when you click "Sign Up" ---
+
   const handleRequestOtp = async (event) => {
     event.preventDefault(); 
 
-    // --- Frontend Checks ---
+
     if (password !== confirmPassword) {
       setError('Error: Passwords do not match.');
       return;
@@ -48,23 +48,23 @@ function SignupPage() {
     setError(''); // Clear old errors
     setSuccess('Sending OTP... Please wait.'); // Show loading message
 
-    // Create the user object to send
+
     const newUser = { name, email, mobile, password };
 
     try {
-      // Call the first API
+
       const response = await axios.post(
-        'http://localhost:5001/api/auth/request-otp', 
+        '/api/auth/request-otp', 
         newUser
       );
 
-      // If it works:
+
       setSuccess(response.data.msg); // Show "OTP has been sent..."
       setError('');
       setIsOtpSent(true); // Show the OTP form
 
     } catch (err) {
-      // If backend sends an error
+
       setSuccess('');
       if (err.response && err.response.data && err.response.data.msg) {
         setError(err.response.data.msg); // Show backend error (e.g., "User already exists")
@@ -74,7 +74,7 @@ function SignupPage() {
     }
   };
 
-  // --- This function runs when you click "Submit OTP" ---
+
   const handleVerifyOtp = async (event) => {
     event.preventDefault();
 
@@ -87,21 +87,21 @@ function SignupPage() {
     setSuccess('Verifying OTP...');
 
     try {
-      // Call the second API
+
       const response = await axios.post(
-        'http://localhost:5001/api/auth/verify-otp',
+        '/api/auth/verify-otp',
         { email: email, otp: otp } // Send email (from state) and the new OTP
       );
 
-      // If it works, the backend sends a token
+
       console.log('Verification successful!', response.data.token);
       
-      // We'll just show an alert for now. Later we will save this token.
+
       alert('Account verified successfully! You can now log in.');
       navigate('/login'); // Send user to login page
 
     } catch (err) {
-      // If backend sends an error
+
       setSuccess('');
       if (err.response && err.response.data && err.response.data.msg) {
         setError(err.response.data.msg); // Show backend error (e.g., "Invalid OTP")
@@ -111,7 +111,7 @@ function SignupPage() {
     }
   };
 
-  // --- Render the OTP Form ---
+
   const renderOtpForm = () => {
     return (
       <form className="otp-form-container" onSubmit={handleVerifyOtp}>
@@ -130,14 +130,14 @@ function SignupPage() {
           />
         </div>
         
-        {/* Show error or success messages */}
+        {}
         {error && <p className="error-message" style={{ textAlign: 'center' }}>{error}</p>}
         {success && <p className="success-message" style={{ textAlign: 'center' }}>{success}</p>}
 
         <button type="submit" className="login-button">Submit OTP</button>
         
         <div className="otp-options">
-          {/* This button just flips the switch back to 'false' */}
+          {}
           <button type="button" className="back-button" onClick={() => {
             setIsOtpSent(false);
             setError('');
@@ -150,7 +150,7 @@ function SignupPage() {
     );
   };
 
-  // --- Render the Main Signup Form ---
+
   const renderSignupForm = () => {
     return (
       <form onSubmit={handleRequestOtp}> 
@@ -214,7 +214,7 @@ function SignupPage() {
           />
         </div>
 
-        {/* Show error or success messages */}
+        {}
         {error && <p className="error-message" style={{ textAlign: 'center', marginBottom: '10px' }}>{error}</p>}
         {success && <p className="success-message" style={{ textAlign: 'center', marginBottom: '10px' }}>{success}</p>}
 
@@ -223,7 +223,7 @@ function SignupPage() {
     );
   };
 
-  // --- Main Component Return ---
+
   return (
     <div className="login-page-container">
       <div className="login-box" style={{ width: '400px' }}> 
@@ -232,7 +232,7 @@ function SignupPage() {
         
         <h2>{isOtpSent ? 'Verify Your Account' : 'Create Account'}</h2>
         
-        {/* This logic decides which form to show */}
+        {}
         {isOtpSent ? renderOtpForm() : renderSignupForm()}
         
         {!isOtpSent && (

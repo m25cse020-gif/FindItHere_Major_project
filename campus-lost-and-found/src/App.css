@@ -1,32 +1,32 @@
-/* --- Global Styles & Fonts --- */
+
 body {
   margin: 0;
-  font-family: 'Roboto', Arial, sans-serif; /* Use the good font */
-  background-color: #f8f9fa; /* A slightly softer white background */
-  color: #333; /* Dark grey text is easier to read than pure black */
+  font-family: 'Roboto', Arial, sans-serif; 
+  background-color: #f8f9fa; 
+  color: #333; 
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* --- Top Header (Project Title) --- */
+
 .top-header {
   text-align: center;
   padding: 1px 0;
-  background-color: #ffffff; /* Clean white background */
-  border-bottom: 2px solid #2e87e0; /* IITJ Blue accent */
+  background-color: #ffffff; 
+  border-bottom: 2px solid #2e87e0; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .top-header h1 {
   margin: 0;
-  color: #003366; /* IITJ Blue title */
+  color: #003366; 
   font-size: 2.2rem;
   font-weight: 700;
 }
 
-/* --- Navigation Bar --- */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -51,7 +51,7 @@ html {
   display: flex;
 }
 
-/* --- Links in Navbar (Logout, Admin, My Reports) --- */
+
 .logout-link {
   color: white;
   text-decoration: none;
@@ -87,23 +87,23 @@ html {
   background-color: #575757;
 }
 
-/* --- Main Content Area --- */
+
 .main-content {
   max-width: 1200px; 
-  margin: 30px auto; /* More space from top */
+  margin: 30px auto; 
   padding: 0 20px;
 }
 
-/* Hero Image */
+
 .hero-image-container img {
   width: 100%;
-  height: 400px; /* Fixed height for hero */
+  height: 400px; 
   object-fit: cover;
-  border-radius: 12px; /* Softer corners */
+  border-radius: 12px; 
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* About Section */
+
 .about-section {
   background-color: white;
   padding: 30px;
@@ -122,7 +122,7 @@ html {
   line-height: 1.6;
 }
 
-/* --- 3-Option Action Cards (Big Improvement) --- */
+
 .actions-section {
   display: flex;
   justify-content: space-between;
@@ -137,11 +137,11 @@ html {
   border-radius: 12px;
   padding: 25px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Softer shadow */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Make cards "lift up" on hover */
+
 .action-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
@@ -156,8 +156,8 @@ html {
   background-color: #003366;
   color: white;
   border: none;
-  padding: 12px 24px; /* Bigger button */
-  border-radius: 8px; /* Softer button corners */
+  padding: 12px 24px; 
+  border-radius: 8px; 
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
@@ -165,13 +165,13 @@ html {
 }
 
 .action-card button:hover {
-  background-color: #0055a4; /* Lighter blue on hover */
+  background-color: #0055a4; 
   transform: translateY(-2px);
 }
 
 
-/* --- Footer --- */
-/* --- Naya Footer Design (Light Grey Background) --- */
+
+
 .footer {
   background-color: #b6a6d5; 
   color: #555; 
@@ -184,40 +184,40 @@ html {
   padding: 20px 40px; 
 }
 
-/* Dono logos ke liye */
+
 .footer-logo {
   height: 100px; 
   width: auto;
-  opacity: 1; /* Thoda kam transparent */
-  /* Logo ke andar ki image ko bhi thoda effect de sakte hain */
+  opacity: 1; 
+  
   filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1)); 
 }
 
-/* Beech ke text ke liye */
+
 .footer-text {
   text-align: center;
-  font-size: 0.95rem; /* Thoda bada text */
-  color: #0a0909; /* Text ka rang thoda aur dark */
+  font-size: 0.95rem; 
+  color: #0a0909; 
 }
 
 .footer-text p {
   margin: 4px 0; 
 }
 
-/* --- Header Logo Styling --- */
+
 .header-content {
   display: flex;
-  align-items: center; /* Vertical center */
-  justify-content: center; /* Horizontal center */
-  gap: 600px; /* Logo aur title ke beech jagah */
+  align-items: center; 
+  justify-content: center; 
+  gap: 600px; 
 }
 
 .header-logo {
-  height: 100px; /* Aap apne logo ke hisaab se height badal sakte hain */
+  height: 100px; 
   width: auto;
 }
 
-/* Title ka font thoda chhota kar dete hain taaki logo fit ho */
+
 .top-header h1 {
   font-size: 2rem;
 }

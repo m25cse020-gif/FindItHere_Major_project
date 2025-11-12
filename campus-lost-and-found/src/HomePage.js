@@ -1,16 +1,16 @@
 import React from 'react';
-// 1. 'useNavigate' ko import karein
+
 import { useNavigate } from 'react-router-dom'; 
 import './App.css'; 
 
 function HomePage() {
   
-  // 2. 'useNavigate' ko setup karein
+
   const navigate = useNavigate();
 
-  // Is function ka naam bhi badal dete hain
+
 const handleReportClick = () => {
-  // User ko naye page par bhej do
+
   navigate('/report-item');
 };
  
@@ -19,10 +19,10 @@ const handleViewClick = () => {
 };
   return (
     <>
-      {/* 3. MAIN CONTENT */}
+      {}
       <main className="main-content">
 
-        {/* Image Section */}
+        {}
         <section className="hero-image-container">
           <img 
             src="/iit jodhpur.webp" 
@@ -30,7 +30,7 @@ const handleViewClick = () => {
           />
         </section>
 
-        {/* About Section */}
+        {}
         <section className="about-section" id="about-portal">
           <h2>About This Portal</h2>
           <p>
@@ -42,7 +42,7 @@ const handleViewClick = () => {
           <p>FindItHere: Campus Lost & Found Portal A centralized digital solution for managing lost and found items at IIT Jodhpur using modern web technologies by Mangalton Okram, Nishant Chourasia Under the guidance of Prof. Sumit Kalra.</p>
         </section>
 
-        {/* 4. 'onClick' ko teeno buttons mein add karein */}
+        {}
         <section className="actions-section">
           <div className="action-card">
             <h3>Report Lost Item</h3>
@@ -63,23 +63,23 @@ const handleViewClick = () => {
 
       </main>
 
-      {/* 4. FOOTER */}
+      {}
       <footer className="footer">
-  {/* 1. Left Side Logo */}
+  {}
   <img 
     src="/logo.png" 
     alt="Project Logo" 
     className="footer-logo" 
   />
   
-  {/* 2. Center Copyright Text */}
+  {}
   <div className="footer-text">
     <p>A dedicated portal to help reconnect lost items with their owners at IIT Jodhpur.</p>
     <p>Created by: Mangalton Okram, Nishant Chourasia </p>
     <p>© 2025 IIT Jodhpur. All rights reserved.</p>
   </div>
 
-  {/* 3. Right Side Logo */}
+  {}
   <img 
     src="/kn_tree.png" 
     alt="Knowledge Tree Logo" 

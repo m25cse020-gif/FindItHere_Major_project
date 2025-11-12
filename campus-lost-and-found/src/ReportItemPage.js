@@ -5,7 +5,7 @@ import './StaticPage.css'; // We'll re-use the same CSS
 import './LoginPage.css'; // Re-use this for form styles
 
 function ReportItemPage() {
-  // --- STATE MANAGEMENT ---
+
   const [formData, setFormData] = useState({
     itemName: '',
     category: 'Electronics',
@@ -14,16 +14,16 @@ function ReportItemPage() {
     itemType: 'found'
   });
   
-  // Create a separate state for the image file
+
   const [imageFile, setImageFile] = useState(null); 
   
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
-  // --- HANDLERS ---
+
   
-  // This handles changes for text fields, dropdowns
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -31,59 +31,59 @@ function ReportItemPage() {
     });
   };
 
-  // This handles the file input
+
   const handleFileChange = (e) => {
     setImageFile(e.target.files[0]); // Get the first file
   };
 
-  // Form submit function
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('Submitting...');
 
-    // 1. Get the token (I-card)
+
     const token = localStorage.getItem('token');
     if (!token) {
       setError('You must be logged in to report an item.');
       return;
     }
 
-    // 2. Create FormData
-    // This is required for sending files
+
+
     const dataToSubmit = new FormData();
     
-    // Add all the text data
+
     dataToSubmit.append('itemName', formData.itemName);
     dataToSubmit.append('category', formData.category);
     dataToSubmit.append('location', formData.location);
     dataToSubmit.append('description', formData.description);
     dataToSubmit.append('itemType', formData.itemType);
     
-    // 3. Add the image file (if one was selected)
-    // The name 'itemImage' MUST match the backend: upload.single('itemImage')
+
+
     if (imageFile) {
       dataToSubmit.append('itemImage', imageFile);
     }
 
     try {
-      // 4. Set headers for file upload
+
       const config = {
         headers: {
-          // 'Content-Type' is set to 'multipart/form-data' by axios automatically
-          // when we send FormData. We just need to send the token.
+
+
           'x-auth-token': token
         }
       };
 
-      // 5. Send the FormData to the backend
+
       const response = await axios.post(
-        'http://localhost:5002/api/items/report',
+        '/api/items/report',
         dataToSubmit, // Send the FormData object
         config
       );
 
-      // 6. Handle success
+
       console.log(response.data);
       setSuccess('Item reported successfully! Status is Pending.');
       setError('');
@@ -92,7 +92,7 @@ function ReportItemPage() {
       }, 2000);
 
     } catch (err) {
-      // 7. Handle errors
+
       setSuccess('');
       if (err.response && err.response.data && err.response.data.msg) {
         setError(err.response.data.msg);
@@ -102,14 +102,14 @@ function ReportItemPage() {
     }
   };
 
-  // --- RENDER ---
+
   return (
     <div className="static-page-container">
       <div className="static-content-box" style={{ maxWidth: '600px' }}>
         <h2>Report an Item</h2>
         <p>Fill out the details of the item you lost or found.</p>
 
-        {/* Note the 'encType' is NOT needed when using axios */}
+        {}
         <form onSubmit={handleSubmit} className="login-box" style={{ padding: 0, boxShadow: 'none' }}>
           
           <div className="input-group">
@@ -166,7 +166,7 @@ function ReportItemPage() {
             ></textarea>
           </div>
 
-          {/* --- THIS IS THE NEW FILE INPUT --- */}
+          {}
           <div className="input-group">
             <label>Upload Image (Optional)</label>
             <input
@@ -176,7 +176,7 @@ function ReportItemPage() {
               style={{ padding: '10px' }} // Add some basic styling
             />
           </div>
-          {/* ---------------------------------- */}
+          {}
 
           {error && <p className="error-message" style={{ textAlign: 'center' }}>{error}</p>}
           {success && <p className="success-message" style={{ textAlign: 'center' }}>{success}</p>}

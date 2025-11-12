@@ -35,13 +35,13 @@ const ItemSchema = new Schema({
     default: 'Pending'
   },
   
-  // --- THIS IS THE MISSING PIECE ---
-  // This line tells Mongoose to save an 'image' field
+
+
   image: {
     type: String,
     default: '' 
   },
-  // ----------------------------------
+
 
   date: {
     type: Date,

@@ -25,7 +25,7 @@ function MyReportsPage() {
           }
         };
 
-        // 1. Call your NEW backend API
+
         const response = await axios.get(
           'http://localhost:5002/api/items/my-reports',
           config
@@ -69,7 +69,7 @@ function MyReportsPage() {
 
               <div className="item-card-content">
                 
-                {/* --- WE ADD THE STATUS --- */}
+                {}
                 <span 
                   className="item-tag" 
                   style={{ 

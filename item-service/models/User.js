@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// This is the blueprint (Schema)
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -28,8 +28,8 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   },
 
-  // --- YEH DO LINEIN SABSE ZAROORI HAIN ---
-  // Agar yeh yahan nahi hongi, toh database 'otp' ko save nahi karega
+
+
   otp: {
     type: String,
     default: null 
@@ -38,7 +38,7 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false 
   }
-  // ----------------------------------------
+
 
 });
 

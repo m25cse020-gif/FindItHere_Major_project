@@ -1,4 +1,4 @@
-// --- ITEM-SERVICE/INDEX.JS (FINAL CLEANED CODE) ---
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -17,21 +17,21 @@ app.use(express.json());
 
 const port = 5002; 
 
-// Database Connection
-mongoose.connect(process.env.mongoURI, { /* options */ })
+
+mongoose.connect(process.env.mongoURI, {  })
   .then(() => console.log('Item-Service: MongoDB Connected!'))
   .catch(err => console.error(err));
 
-// --- (NEW) CLOUDINARY & MULTER CONFIG ---
 
-// Configure Cloudinary
+
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Configure Multer to use Cloudinary for storage
+
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
@@ -40,18 +40,18 @@ const storage = new CloudinaryStorage({
   }
 });
 
-// This 'upload' variable now sends files to Cloudinary
+
 const upload = multer({ storage: storage });
-// ----------------------------------------
 
 
-// ===================================
-//      ITEM ROUTES
-// ===================================
 
-// @route   POST /api/items/report
-// @desc    Report a new lost or found item
-// @access  Private (Needs a token)
+
+
+
+
+
+
+
 app.post('/api/items/report', auth, upload.single('itemImage'), async (req, res) => {
   try {
     const { itemName, category, location, description, itemType } = req.body;
@@ -87,9 +87,9 @@ app.post('/api/items/report', auth, upload.single('itemImage'), async (req, res)
 });
 
 
-// @route   GET /api/items/all
-// @desc    Get all APPROVED items
-// @access  Private (Needs a token)
+
+
+
 app.get('/api/items/all', auth, async (req, res) => {
   try {
     const items = await Item.find({ 
@@ -106,13 +106,13 @@ app.get('/api/items/all', auth, async (req, res) => {
 });
 
 
-// ===================================
-//      USER'S OWN REPORTS
-// ===================================
 
-// @route   GET /api/items/my-reports
-// @desc    Get all items reported by the logged-in user
-// @access  Private
+
+
+
+
+
+
 app.get('/api/items/my-reports', auth, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -126,13 +126,13 @@ app.get('/api/items/my-reports', auth, async (req, res) => {
 });
 
 
-// ===================================
-//      ADMIN ROUTES
-// ===================================
 
-// @route   GET /api/admin/pending-items
-// @desc    Get all items with "Pending" status
-// @access  Admin Only
+
+
+
+
+
+
 app.get('/api/admin/pending-items', [auth, admin], async (req, res) => {
   try {
     const pendingItems = await Item.find({ status: 'Pending' })
@@ -146,9 +146,9 @@ app.get('/api/admin/pending-items', [auth, admin], async (req, res) => {
   }
 });
 
-// @route   PUT /api/admin/approve-item/:id
-// @desc    Approve an item
-// @access  Admin Only
+
+
+
 app.put('/api/admin/approve-item/:id', [auth, admin], async (req, res) => {
   try {
     let item = await Item.findById(req.params.id);
@@ -164,9 +164,9 @@ app.put('/api/admin/approve-item/:id', [auth, admin], async (req, res) => {
   }
 });
 
-// @route   PUT /api/admin/claim-item/:id
-// @desc    Mark an item as "Claimed"
-// @access  Admin Only
+
+
+
 app.put('/api/admin/claim-item/:id', [auth, admin], async (req, res) => {
   try {
     let item = await Item.findById(req.params.id);
@@ -182,7 +182,7 @@ app.put('/api/admin/claim-item/:id', [auth, admin], async (req, res) => {
   }
 });
 
-// --- Server Start ---
+
 app.listen(port, () => {
   console.log(`Item-Service (Microservice 2) running on http://localhost:${port}`);
 });

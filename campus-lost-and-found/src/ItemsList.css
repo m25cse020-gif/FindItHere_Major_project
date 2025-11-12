@@ -1,7 +1,7 @@
 .items-list-container {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between cards */
+  gap: 20px; 
   margin-top: 20px;
 }
 
@@ -9,20 +9,20 @@
   display: flex;
   border: 1px solid #ddd;
   border-radius: 8px;
-  overflow: hidden; /* To keep the image corners rounded */
+  overflow: hidden; 
   background: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
 }
 
 .item-card:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* <-- ADD THIS */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); 
 }
 
 .item-card-image {
   width: 200px;
   height: 200px;
-  object-fit: cover; /* This scales the image nicely */
+  object-fit: cover; 
   border-right: 1px solid #ddd;
   border-radius: 8px 0 0 8px;
   border-radius: 0 8px 8px 0;
@@ -44,13 +44,13 @@
 
 .item-card-content {
   padding: 15px 20px;
-  flex: 1; /* Takes up the remaining space */
-  position: relative; /* For positioning the tag */
+  flex: 1; 
+  position: relative; 
 }
 
 .item-card-content h3 {
   margin-top: 0;
-  color: #003366; /* IITJ Blue */
+  color: #003366; 
 }
 
 .item-card-content p {
@@ -59,7 +59,7 @@
   color: #333;
 }
 
-/* --- Tag for "Lost" or "Found" --- */
+
 .item-tag {
   position: absolute;
   top: 15px;
@@ -73,14 +73,14 @@
 }
 
 .item-tag.lost {
-  background-color: #d9534f; /* Red */
+  background-color: #d9534f; 
 }
 
 .item-tag.found {
-  background-color: #5cb85c; /* Green */
+  background-color: #5cb85c; 
 }
 
-/* --- Claim Button --- */
+
 .claim-button {
   background-color: #003366;
   color: white;
@@ -90,8 +90,8 @@
   cursor: pointer;
   font-size: 0.9rem;
   margin-top: 10px;
-  padding: 10px 18px; /* Make it a bit bigger */
-  font-weight: 500; /* Medium font weight */
+  padding: 10px 18px; 
+  font-weight: 500; 
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -100,26 +100,26 @@
   transform: translateY(-2px);
 }
 
-/* --- Lost/Found Layout --- */
 
-/* 'Lost' item card ke liye */
+
+
 .item-card-lost {
-  flex-direction: row-reverse; /* Image ko right side par bhej dega */
+  flex-direction: row-reverse; 
   
 }
 
-/* 'Lost' card ki image ke border ko adjust karein */
+
 .item-card-lost .item-card-image,
 .item-card-lost .item-card-no-image {
-  border-right: none; /* Right ka border hatayein */
-  border-left: 1px solid #ddd; /* Left mein border daalein */
+  border-right: none; 
+  border-left: 1px solid #ddd; 
   border-radius: 0 8px 8px 0;
 }
 
-/* --- Filter Bar Styling --- */
+
 .filter-bar {
   display: flex;
-  flex-wrap: wrap; /* Allows filters to wrap on small screens */
+  flex-wrap: wrap; 
   gap: 15px;
   padding: 15px;
   background-color: #f9f9f9;
@@ -129,7 +129,7 @@
 }
 
 .filter-search {
-  flex: 3; /* Makes search bar the widest */
+  flex: 3; 
   min-width: 200px;
   padding: 10px;
   border: 1px solid #ddd;
@@ -138,29 +138,29 @@
 }
 
 .filter-select {
-  flex: 1; /* Makes selects share remaining space */
+  flex: 1; 
   min-width: 150px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
-  background-color: #fff; /* White background for select */
+  background-color: #fff; 
 }
 
-/* --- Naya Button Container --- */
+
 .item-card-buttons {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px; /* Buttons ke beech mein space */
-  margin-top: 15px; /* Upar description se doori */
+  gap: 10px; 
+  margin-top: 15px; 
 }
 
-/* Naya "Remove" Button */
+
 .remove-button {
-  background-color: #d9534f; /* Red */
+  background-color: #d9534f; 
 }
 
 .remove-button:hover {
-  background-color: #c9302c !important; /* Darker red */
+  background-color: #c9302c !important; 
 }

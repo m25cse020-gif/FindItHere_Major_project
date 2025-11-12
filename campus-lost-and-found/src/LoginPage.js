@@ -5,40 +5,40 @@ import './LoginPage.css';
 
 function LoginPage() {
   
-  // 3. Email aur Password ko yaad rakhne ke liye State banaye
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   
-  // 4. Page badalne ke liye useNavigate
+
   const navigate = useNavigate();
 
-  // 5. Form submit hone par yeh function chalega
+
   const handleLoginSubmit = async (event) => {
     event.preventDefault(); // Page ko refresh hone se roka
     setError(''); // Puraane error saaf kiye
 
     try {
-      // 6. Backend API ko call kiya
+
       const response = await axios.post(
-        'http://localhost:5001/api/auth/login',
+        '/api/auth/login',
         { email, password }
       );
 
-      // 7. Agar login safal hua, toh backend 'token' bhejega
+
       const token = response.data.token;
       
-      // 8. Token ko browser ki memory (localStorage) mein save kiya
-      // (Taaki user baad mein bhi login rahe)
+
+
       localStorage.setItem('token', token);
 
       console.log('Login successful! Token saved:', token);
       
-      // 9. User ko Homepage par bhej diya
+
       navigate('/'); 
 
     } catch (err) {
-      // 10. Agar backend se error aaya (jaise "Invalid credentials")
+
       if (err.response && err.response.data && err.response.data.msg) {
         setError(err.response.data.msg); // Backend ka error dikhaya
       } else {
@@ -57,11 +57,11 @@ function LoginPage() {
         
         <h2>Login</h2>
         
-        {/* 11. Form mein 'onSubmit' joda */}
+        {}
         <form onSubmit={handleLoginSubmit}>
           
           <div className="input-group">
-            <label htmlFor="email">Email</label> {/* 'username' ko 'email' kiya */}
+            <label htmlFor="email">Email</label> {}
             <input 
               type="email" // 'text' ko 'email' kiya
               id="email" 
@@ -84,7 +84,7 @@ function LoginPage() {
             />
           </div>
           
-          {/* Error message dikhane ke liye */}
+          {}
           {error && (
             <p className="error-message" style={{ textAlign: 'center', marginBottom: '10px' }}>
               {error}
@@ -98,7 +98,7 @@ function LoginPage() {
           <p>New user? <Link to="/signup">Sign up here</Link></p>
         </div>
         
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        {}
         <div className="other-logins">
           <a href="#">Staff Login</a> | <a href="#">Security Login</a>
         </div>

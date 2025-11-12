@@ -9,7 +9,7 @@ function AdminPanel() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // This function fetches the pending items
+
   const fetchPendingItems = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -23,7 +23,7 @@ function AdminPanel() {
         headers: { 'x-auth-token': token }
       };
 
-      // 1. Call the new ADMIN API to get PENDING items
+
       const response = await axios.get(
         'http://localhost:5002/api/admin/pending-items',
         config
@@ -42,12 +42,12 @@ function AdminPanel() {
     }
   };
 
-  // Run the fetch function when the page loads
+
   useEffect(() => {
     fetchPendingItems();
   }, []); // Empty array means it runs once
 
-  // --- THIS IS THE NEW APPROVE FUNCTION ---
+
   const handleApprove = async (itemId) => {
     if (!window.confirm('Are you sure you want to approve this item?')) {
       return; // Stop if the admin clicks 'Cancel'
@@ -59,7 +59,7 @@ function AdminPanel() {
         headers: { 'x-auth-token': token }
       };
 
-      // 2. Call the new ADMIN API to APPROVE the item
+
       const response = await axios.put(
         `http://localhost:5002/api/admin/approve-item/${itemId}`,
         {}, // No data needed in the body
@@ -68,7 +68,7 @@ function AdminPanel() {
 
       setSuccess(response.data.msg); // Show "Item approved successfully"
       
-      // 3. Remove the item from the list on the screen
+
       setPendingItems(prevItems => 
         prevItems.filter(item => item._id !== itemId)
       );
@@ -112,7 +112,7 @@ function AdminPanel() {
                 <p><strong>Category:</strong> {item.category}</p>
                 <p>{item.description}</p>
                 
-                {/* --- NEW ADMIN BUTTON --- */}
+                {}
                 <button 
                   className="claim-button" 
                   style={{ backgroundColor: '#5cb85c' }} // Green color
