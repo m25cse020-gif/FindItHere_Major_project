@@ -15,4 +15,4 @@ RUN chmod +x ./node_modules/.bin/nodemon
 COPY . .
 
 
-CMD ["npm", "start"]
+CMD ["./node_modules/.bin/nodemon", "index.js"]
