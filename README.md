@@ -57,22 +57,22 @@ cd Lost-and-Found-Docker-Version
 (Or navigating to your sde_major folder if you already have it)
 2. Configure Environment Variables
 Create a ```.env``` file in the root directory of the project and add your secrets:
-# Database (MongoDB Atlas)
+### Database (MongoDB Atlas)
 ```mongoURI=mongodb+srv://<username>:<password>@cluster...
 ```
 
-# Nodemailer (Gmail) Credentials
+### Nodemailer (Gmail) Credentials
 ```EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-16-digit-app-password
 ```
-# Cloudinary Credentials
+### Cloudinary Credentials
 ```
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-# JWT Secret
+### JWT Secret
 ```
 JWT_SECRET=your_super_secret_key
 ```
