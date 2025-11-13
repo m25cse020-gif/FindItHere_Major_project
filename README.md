@@ -58,11 +58,13 @@ cd Lost-and-Found-Docker-Version
 2. Configure Environment Variables
 Create a ```.env``` file in the root directory of the project and add your secrets:
 ### Database (MongoDB Atlas)
-```mongoURI=mongodb+srv://<username>:<password>@cluster...
+```
+mongoURI=mongodb+srv://<username>:<password>@cluster...
 ```
 
 ### Nodemailer (Gmail) Credentials
-```EMAIL_USER=your-email@gmail.com
+```
+EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-16-digit-app-password
 ```
 ### Cloudinary Credentials
